@@ -72,3 +72,6 @@ func exit_state(old_state, new_state):
 	if old_state == "eating":
 		parent.emit_signal("eating_finished")
 		parent.stop_eat()
+
+	if old_state in ["walking_forward", "walking_backward"]:
+		parent.stop_walk()

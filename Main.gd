@@ -11,6 +11,7 @@ onready var score_keeper := $ScoreKeeper
 onready var _level_timer := $PlayTimer
 onready var _brain := $StateMachine
 onready var _gui := $GUI
+onready var _win_music := $WinMusic
 
 func _ready():
 	beadel.beadel_head = beadel_biter
@@ -33,6 +34,8 @@ func _on_PlayTimer_timeout():
 	_brain.set_state("end_game")
 
 func play_end_game():
+	_win_music.play()
+
 	var percent_complete = score_keeper.get_percent_finished()
 	var percent_complete_money = percent_complete * 7500
 

@@ -8,6 +8,8 @@ export(float) var move_speed := 200.0
 export(float) var turn_speed := 3.0
 
 onready var _anim := $AnimationPlayer
+onready var _eat_sound := $EatSound
+onready var _walk_sound := $WalkSound
 
 var beadel_head
 var _velocity := Vector2.ZERO
@@ -39,13 +41,21 @@ func _physics_process(delta):
 
 func walk():
 	_anim.play("walk")
+	_walk_sound.play()
+
+func stop_walk():
+	_walk_sound.stop()
 
 func eat():
 	_anim.play("eat")
+	_eat_sound.play()
+	_walk_sound.play()
 	if beadel_head:
 			beadel_head.show()
 
 func stop_eat():
+	_eat_sound.stop()
+	_walk_sound.stop()
 	if beadel_head:
 			beadel_head.hide()
 

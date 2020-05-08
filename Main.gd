@@ -1,6 +1,6 @@
 extends Node2D
 
-export(int, 15, 120) var time_for_level
+export(int, 15, 120) var time_for_level := 15
 export(String) var next_level
 
 onready var eaten_viewport := $EatenViewport
@@ -24,9 +24,11 @@ func _ready():
 
 	_wood.material.set_shader_param("symbol_mask", symbol.texture)
 
-func _process(delta):
-	_gui.set_time_left(_level_timer.time_left)
+	_level_timer.wait_time = time_for_level
+	_gui.set_time_left(time_for_level)
 
+func update_time():
+	_gui.set_time_left(_level_timer.time_left)
 
 func set_timer_active(b : bool):
 	if b:

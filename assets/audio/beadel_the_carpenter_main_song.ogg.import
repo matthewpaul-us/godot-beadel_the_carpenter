@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/beadel_the_carpenter_main_song.ogg-0681796f89bbba57c7f44803661695ec.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/beadel_the_carpenter_main_song.ogg"
+dest_files=[ "res://.import/beadel_the_carpenter_main_song.ogg-0681796f89bbba57c7f44803661695ec.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

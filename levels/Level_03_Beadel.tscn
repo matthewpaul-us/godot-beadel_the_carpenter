@@ -7,13 +7,15 @@
 [ext_resource path="res://Beadel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://EatenViewport.tscn" type="PackedScene" id=6]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/images/symbols/symbol_pill.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/symbol.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/wood_smooth.png" type="Texture" id=9]
 [ext_resource path="res://eaten_shader.tres" type="Material" id=10]
 [ext_resource path="res://assets/images/wood_rough_masked.png" type="Texture" id=11]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
+time_for_level = 75
+next_level = "res://levels/LevelPill.tscn"
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -53,6 +55,7 @@ script = ExtResource( 3 )
 
 [node name="WinMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-bus = "Music"
+bus = "Stingers"
 [connection signal="timeout" from="PlayTimer" to="." method="_on_PlayTimer_timeout"]
 [connection signal="compare_finished" from="ScoreKeeper" to="." method="_on_ScoreKeeper_compare_finished"]
+[connection signal="next_level_pressed" from="GUI" to="." method="_on_GUI_next_level_pressed"]

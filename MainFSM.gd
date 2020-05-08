@@ -12,6 +12,8 @@ func process_state(delta):
 	match state:
 		"intro":
 			time_to_wait -= delta
+		"carve":
+			parent.update_time()
 	pass
 
 func process_transition(delta):

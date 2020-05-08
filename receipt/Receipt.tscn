@@ -36,6 +36,7 @@ __meta__ = {
 }
 
 [node name="TimeTakenLabel" type="Label" parent="."]
+visible = false
 margin_left = 504.18
 margin_top = 368.0
 margin_right = 579.18
@@ -60,6 +61,7 @@ align = 2
 valign = 1
 
 [node name="TimeTakenMoneyLabel" type="Label" parent="."]
+visible = false
 margin_left = 622.789
 margin_top = 368.397
 margin_right = 697.789
@@ -108,6 +110,28 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "$11400"
 align = 1
 clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RequestImage" type="TextureRect" parent="."]
+margin_left = 315.0
+margin_top = 189.0
+margin_right = 468.0
+margin_bottom = 303.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FulfilledImage" type="TextureRect" parent="."]
+margin_left = 540.785
+margin_top = 189.0
+margin_right = 693.785
+margin_bottom = 303.0
+expand = true
+stretch_mode = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }

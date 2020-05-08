@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://assets/audio/wood_smooth.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/wood_smooth.png" type="Texture" id=1]
 [ext_resource path="res://Beadel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/images/symbol.png" type="Texture" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
@@ -11,14 +11,34 @@
 [ext_resource path="res://MainFSM.gd" type="Script" id=9]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/audio/cute_victory.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/images/wood_rough_masked.png" type="Texture" id=12]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
-uniform sampler2D mask;
+uniform float blend_offset : hint_range(-1,1);
+uniform sampler2D eaten_mask;
+uniform sampler2D symbol_mask;
+
+float intensity(vec3 color) {
+	return color.r * 0.3 + color.g * 0.59 + color.b * 0.11;
+}
 
 void fragment() {
-	COLOR = COLOR * texture(mask, UV);
+	vec4 final_color = texture(TEXTURE, UV);
+	vec4 mask = texture(eaten_mask, UV);
+	
+	vec4 symbol_color = texture(symbol_mask, UV);
+	
+	float blend = 1.0 - intensity(symbol_color.rgb);
+	//final_color.rgb = final_color.rgb * (1.0 - symbol_color.a) + symbol_color.rgb * (1.0 - symbol_color.a);
+	
+	final_color = symbol_color * (blend * blend_offset) + final_color * (1.0 - blend * blend_offset);
+
+	float a = intensity(mask.rgb);
+	final_color.a = round(a);
+	
+	COLOR = final_color;
 }"
 
 [sub_resource type="ViewportTexture" id=2]
@@ -27,13 +47,15 @@ viewport_path = NodePath("EatenViewport")
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = SubResource( 1 )
-shader_param/mask = SubResource( 2 )
+shader_param/blend_offset = 0.38
+shader_param/eaten_mask = SubResource( 2 )
+shader_param/symbol_mask = ExtResource( 3 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 4 )
 
 [node name="PlayTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 5.0
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 9 )
@@ -42,11 +64,21 @@ script = ExtResource( 9 )
 position = Vector2( 512, 300 )
 texture = ExtResource( 3 )
 
-[node name="wood_surface" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.454902 )
+[node name="WoodUnder" type="Sprite" parent="."]
+modulate = Color( 0.827451, 0.662745, 0.380392, 1 )
+position = Vector2( 512.105, 300 )
+texture = ExtResource( 1 )
+flip_h = true
+flip_v = true
+
+[node name="WoodSurface" type="Sprite" parent="."]
 material = SubResource( 3 )
 position = Vector2( 512.105, 300 )
 texture = ExtResource( 1 )
+
+[node name="RoughWood" type="Sprite" parent="."]
+position = Vector2( 512.105, 300 )
+texture = ExtResource( 12 )
 
 [node name="Beadel" parent="." instance=ExtResource( 2 )]
 position = Vector2( 662, 388 )

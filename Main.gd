@@ -42,8 +42,11 @@ func play_end_game():
 	var time_taken = time_for_level - _level_timer.time_left
 	var time_taken_money = _level_timer.time_left * 500
 
+	var symbol_texture = symbol.texture
+	var eaten_texture = eaten_viewport.get_texture()
 	_gui.show_receipt(percent_complete, percent_complete_money,
-		time_taken, time_taken_money)
+		time_taken, time_taken_money,
+		symbol_texture, eaten_texture)
 
 
 func _on_ScoreKeeper_compare_finished():

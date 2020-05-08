@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wood_smooth.png-3ce933f653d316c900e01f600300ea88.stex"
+path="res://.import/wood_rough_masked.png-ea7e2c64eecf2edc74f7a9329dbb1cd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/audio/wood_smooth.png"
-dest_files=[ "res://.import/wood_smooth.png-3ce933f653d316c900e01f600300ea88.stex" ]
+source_file="res://assets/images/wood_rough_masked.png"
+dest_files=[ "res://.import/wood_rough_masked.png-ea7e2c64eecf2edc74f7a9329dbb1cd8.stex" ]
 
 [params]
 

@@ -13,6 +13,9 @@ onready var tax_label := $TaxLabel
 
 onready var total_label := $TotalLabel
 
+onready var _request_image := $RequestImage
+onready var _fulfilled_image := $FulfilledImage
+
 var _percent_complete_money := 0
 var _time_taken_money := 0
 
@@ -40,6 +43,14 @@ func update_tax():
 func update_total():
 	var total = (_percent_complete_money + _time_taken_money) * (1 + tax_rate)
 	total_label.text = _format_money(total)
+
+func set_reference_picture(image : Texture):
+	_request_image.texture = image
+	pass
+
+func set_actual_picture(image: Texture):
+	_fulfilled_image.texture = image
+	pass
 
 func _format_money(m : float):
 	return '$%d' % m

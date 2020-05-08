@@ -10,6 +10,7 @@ export(float) var turn_speed := 3.0
 onready var _anim := $AnimationPlayer
 onready var _eat_sound := $EatSound
 onready var _walk_sound := $WalkSound
+onready var _body := $Body
 
 var beadel_head
 var _velocity := Vector2.ZERO
@@ -17,23 +18,19 @@ var _was_eating := false
 
 
 func _physics_process(delta):
-#	if Input.is_action_pressed("eat"):
-#		if not _was_eating:
-#			emit_signal("eating_started")
-#			_was_eating = true
-#
-#		_velocity = _forward() * eat_speed
-#
-#	else:
-#		if _was_eating:
-#			emit_signal("eating_finished")
-#			_was_eating = false
-#
-#		_velocity = Vector2.ZERO
-#		if beadel_head:
-#			beadel_head.hide()
-
 	move_and_collide(_velocity * delta)
+
+	var body_size = _body.get_rect().size
+	var viewport_size = get_viewport_rect().size
+	if position.x < (0 - body_size.x):
+		position.x = viewport_size.x
+	elif position.x > (viewport_size.x + body_size.x):
+		position.x = 0
+
+	if position.y < (0 - body_size.y):
+		position.y = viewport_size.y
+	elif position.y > (viewport_size.y + body_size.y):
+		position.y = 0
 
 	if beadel_head:
 		beadel_head.global_position = $BeetleHead.global_position

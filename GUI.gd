@@ -14,7 +14,11 @@ func set_percent_complete(percent_complete : float):
 	_percent_complete_label.text = '%d.1%%' % (percent_complete * 100.0)
 
 func show_receipt(percent_complete : float, percent_complete_money : float,
-	time_taken_seconds : float, time_taken_money : float):
+	time_taken_seconds : float, time_taken_money : float,
+	reference_pic : Texture, eaten_pic : Texture):
+		_receipt.set_reference_picture(reference_pic)
+		_receipt.set_actual_picture(eaten_pic)
+
 		_receipt.set_percent_complete(percent_complete, percent_complete_money)
 		_receipt.set_time_taken(time_taken_seconds, time_taken_money)
 

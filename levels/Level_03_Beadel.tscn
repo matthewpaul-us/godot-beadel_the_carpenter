@@ -43,19 +43,22 @@ texture = ExtResource( 9 )
 position = Vector2( 512.105, 300 )
 texture = ExtResource( 11 )
 
-[node name="Beadel" parent="." instance=ExtResource( 5 )]
-position = Vector2( 662, 388 )
-
 [node name="EatenViewport" parent="." instance=ExtResource( 6 )]
 
 [node name="ScoreKeeper" type="Node" parent="."]
 script = ExtResource( 3 )
 
 [node name="GUI" parent="." instance=ExtResource( 7 )]
+layer = 2
 
 [node name="WinMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 bus = "Stingers"
+
+[node name="BeetleLayer" type="CanvasLayer" parent="."]
+
+[node name="Beadel" parent="BeetleLayer" instance=ExtResource( 5 )]
+position = Vector2( 490.546, 102.244 )
 [connection signal="timeout" from="PlayTimer" to="." method="_on_PlayTimer_timeout"]
 [connection signal="compare_finished" from="ScoreKeeper" to="." method="_on_ScoreKeeper_compare_finished"]
 [connection signal="next_level_pressed" from="GUI" to="." method="_on_GUI_next_level_pressed"]

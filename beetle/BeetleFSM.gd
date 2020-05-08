@@ -26,6 +26,8 @@ func process_state(delta):
 
 		"walking_backward":
 			parent._velocity = -parent._forward() * parent.move_speed
+
+
 	pass
 
 func process_transition(delta):

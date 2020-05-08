@@ -16,6 +16,8 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if _can_advance:
+		Globals.beetle_position = beetle.position
+		Globals.beetle_rotation = beetle.rotation
 		get_tree().change_scene("res://levels/Level_01_Plug.tscn")
 
 

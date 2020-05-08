@@ -5,7 +5,8 @@ export(String) var next_level
 
 onready var eaten_viewport := $EatenViewport
 onready var symbol := $Symbol
-onready var beadel := $Beadel
+onready var beadel := $BeetleLayer/Beadel
+onready var beetle_layer := $BeetleLayer
 onready var score_keeper := $ScoreKeeper
 
 onready var _level_timer := $PlayTimer
@@ -15,6 +16,8 @@ onready var _win_music := $WinMusic
 onready var _wood := $WoodSurface
 
 func _ready():
+	beadel.position = Globals.beetle_position
+	beadel.rotation = Globals.beetle_rotation
 	beadel.connect("eating_started", eaten_viewport, "_on_Beadel_eating_started")
 
 	beadel.beadel_head = eaten_viewport.beetle_head
@@ -70,6 +73,8 @@ func play_end_game():
 		time_taken, time_taken_money,
 		symbol_texture, eaten_texture)
 
+	beetle_layer.layer = 2
+
 
 func _on_ScoreKeeper_compare_finished():
 	_gui.set_percent_complete(score_keeper.get_percent_finished())
@@ -77,3 +82,5 @@ func _on_ScoreKeeper_compare_finished():
 
 func _on_GUI_next_level_pressed():
 	get_tree().change_scene(next_level)
+	Globals.beetle_position = beadel.position
+	Globals.beetle_rotation = beadel.rotation

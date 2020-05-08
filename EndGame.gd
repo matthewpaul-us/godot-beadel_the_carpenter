@@ -6,6 +6,7 @@ onready var _tween := $Tween
 onready var _win_label := $WinLabel
 
 func _ready():
+	Globals.money_earned = 67491
 	_tween.interpolate_method(self, 'set_money', 0, Globals.money_earned,
 		5, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	_tween.start()

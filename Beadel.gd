@@ -66,6 +66,5 @@ func start_play():
 func stop_play():
 	_fsm.set_state('stopped')
 
-
 func _forward():
 	return Vector2(0, -1).rotated(rotation).normalized()

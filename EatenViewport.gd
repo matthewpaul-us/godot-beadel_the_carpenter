@@ -5,6 +5,7 @@ extends Viewport
 # var a = 2
 # var b = "text"
 
+onready var beetle_head = $BeetleHead
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

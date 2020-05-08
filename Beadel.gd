@@ -11,6 +11,7 @@ onready var _anim := $AnimationPlayer
 onready var _eat_sound := $EatSound
 onready var _walk_sound := $WalkSound
 onready var _body := $Body
+onready var _fsm := $StateMachine
 
 var beadel_head
 var _velocity := Vector2.ZERO
@@ -58,6 +59,12 @@ func stop_eat():
 
 func stop_animation():
 	_anim.stop()
+
+func start_play():
+	_fsm.set_state('idle')
+
+func stop_play():
+	_fsm.set_state('stopped')
 
 
 func _forward():

@@ -1,5 +1,7 @@
 extends TextureRect
 
+signal next_level_pressed
+
 export(float, 0, 1, 0.005) var tax_rate = 0.095
 
 onready var percent_complete_label := $PercentCompleteLabel
@@ -20,7 +22,7 @@ var _percent_complete_money := 0
 var _time_taken_money := 0
 
 func set_percent_complete(complete : float, money : float):
-	percent_complete_label.text = '%d.1%%' % (complete * 100.0)
+	percent_complete_label.text = '%d%%' % (complete * 100.0)
 	percent_complete_money_label.text = _format_money(money)
 	_percent_complete_money = int(money)
 
@@ -54,3 +56,7 @@ func set_actual_picture(image: Texture):
 
 func _format_money(m : float):
 	return '$%d' % m
+
+
+func _on_NextLevelButton_pressed():
+	emit_signal("next_level_pressed")

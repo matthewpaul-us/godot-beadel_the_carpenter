@@ -22,8 +22,13 @@ func process_transition(delta):
 	return null
 
 func enter_state(new_state, old_state):
+	if new_state == states.intro:
+		time_to_wait = 5
+		parent.play_intro()
+
 	if new_state == states.carve:
 		parent.set_timer_active(true)
+		parent.play_game()
 
 	if new_state == states.end_game:
 		parent.play_end_game()

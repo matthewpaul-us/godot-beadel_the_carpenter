@@ -5,15 +5,17 @@ func _ready():
 	add_state("walking_forward")
 	add_state("walking_backward")
 	add_state("eating")
-	call_deferred('set_state', 'idle')
+	add_state("stopped")
+	call_deferred('set_state', 'stopped')
 
 func process_state(delta):
-	# We always want to be able to turn
-	if Input.is_action_pressed("turn_right"):
-		parent.rotate(parent.turn_speed * delta)
+	# We always want to be able to turn, except when stopped
+	if state != 'stopped':
+		if Input.is_action_pressed("turn_right"):
+			parent.rotate(parent.turn_speed * delta)
 
-	if Input.is_action_pressed("turn_left"):
-		parent.rotate(-parent.turn_speed * delta)
+		if Input.is_action_pressed("turn_left"):
+			parent.rotate(-parent.turn_speed * delta)
 
 	match state:
 		"eating":
@@ -65,6 +67,10 @@ func enter_state(new_state, old_state):
 		parent.eat()
 
 	if new_state == "idle":
+		parent._velocity = Vector2.ZERO
+		parent.stop_animation()
+
+	if new_state == "stopped":
 		parent._velocity = Vector2.ZERO
 		parent.stop_animation()
 

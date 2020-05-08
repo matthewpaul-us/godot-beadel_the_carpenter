@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float blend_offset : hint_range(-1,1);
+uniform sampler2D eaten_mask;
+uniform sampler2D symbol_mask;
+
+float intensity(vec3 color) {
+	return color.r * 0.3 + color.g * 0.59 + color.b * 0.11;
+}
+
+void fragment() {
+	vec4 final_color = texture(TEXTURE, UV);
+	vec4 mask = texture(eaten_mask, UV);
+	
+	vec4 symbol_color = texture(symbol_mask, UV);
+	
+	float blend = 1.0 - intensity(symbol_color.rgb);
+	//final_color.rgb = final_color.rgb * (1.0 - symbol_color.a) + symbol_color.rgb * (1.0 - symbol_color.a);
+	
+	final_color = symbol_color * (blend * blend_offset) + final_color * (1.0 - blend * blend_offset);
+
+	float a = intensity(mask.rgb);
+	final_color.a = round(a);
+	
+	COLOR = final_color;
+}"
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("EatenViewport")
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/blend_offset = 0.38
+shader_param/eaten_mask = SubResource( 2 )

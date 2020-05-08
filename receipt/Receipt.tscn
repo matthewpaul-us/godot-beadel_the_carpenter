@@ -1,0 +1,113 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/images/invoice.png" type="Texture" id=1]
+[ext_resource path="res://receipt/receipt_font_large.tres" type="DynamicFont" id=2]
+[ext_resource path="res://receipt/receipt_font_small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://receipt/Receipt.gd" type="Script" id=4]
+
+[node name="Receipt" type="TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PercentCompleteLabel" type="Label" parent="."]
+margin_left = 519.012
+margin_top = 336.0
+margin_right = 579.012
+margin_bottom = 367.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "100%"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeTakenLabel" type="Label" parent="."]
+margin_left = 504.18
+margin_top = 368.0
+margin_right = 579.18
+margin_bottom = 399.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "77:77"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PercentCompleteMoneyLabel" type="Label" parent="."]
+margin_left = 622.746
+margin_top = 336.0
+margin_right = 697.746
+margin_bottom = 367.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "$3784"
+align = 2
+valign = 1
+
+[node name="TimeTakenMoneyLabel" type="Label" parent="."]
+margin_left = 622.789
+margin_top = 368.397
+margin_right = 697.789
+margin_bottom = 399.397
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "$1140"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SubtotalLabel" type="Label" parent="."]
+margin_left = 622.746
+margin_top = 412.0
+margin_right = 697.746
+margin_bottom = 443.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "$3784"
+align = 2
+valign = 1
+
+[node name="TaxLabel" type="Label" parent="."]
+margin_left = 622.789
+margin_top = 444.397
+margin_right = 697.789
+margin_bottom = 475.397
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "$1140"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TotalLabel" type="Label" parent="."]
+margin_left = 603.0
+margin_top = 489.0
+margin_right = 734.0
+margin_bottom = 533.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "$11400"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,127 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/images/wood_smooth.png" type="Texture" id=1]
+[ext_resource path="res://ImpactFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/images/gauge_in.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/gauge_back.png" type="Texture" id=4]
+[ext_resource path="res://EndGame.gd" type="Script" id=5]
+[ext_resource path="res://assets/images/gauge_over.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/button_next_level.png" type="Texture" id=7]
+
+[node name="EndGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 208.268
+margin_top = -204.998
+margin_right = 272.268
+margin_bottom = 191.002
+max_value = 100000.0
+texture_under = ExtResource( 4 )
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 3 )
+fill_mode = 3
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="."]
+margin_left = 234.436
+margin_top = 107.304
+margin_right = 697.436
+margin_bottom = 175.304
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.482353, 0.482353, 0.482353, 0.384314 )
+text = "Stable Income"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="."]
+margin_left = 239.102
+margin_top = 242.601
+margin_right = 702.102
+margin_bottom = 310.601
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.482353, 0.482353, 0.482353, 0.384314 )
+text = "Paying the Bills"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="."]
+margin_left = 229.771
+margin_top = 351.071
+margin_right = 692.771
+margin_bottom = 419.071
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.482353, 0.482353, 0.482353, 0.384314 )
+text = "Evicted!"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="MoneyLabel" type="Label" parent="."]
+margin_left = 280.854
+margin_top = 504.164
+margin_right = 739.854
+margin_bottom = 572.164
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "$0.00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinLabel" type="Label" parent="."]
+margin_left = 280.854
+margin_top = 18.9625
+margin_right = 739.854
+margin_bottom = 86.9625
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "You Won!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="TextureButton" parent="."]
+margin_left = 240.268
+margin_top = 530.69
+margin_right = 381.268
+margin_bottom = 671.69
+rect_rotation = -180.0
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="MenuButton" to="." method="_on_MenuButton_pressed"]

@@ -41,11 +41,12 @@ func _on_PlayTimer_timeout():
 	_brain.set_state("end_game")
 
 func play_intro():
+	yield(get_tree().create_timer(3), "timeout")
 	_gui.show_message("Ready", 1.5)
 	yield(get_tree().create_timer(2), "timeout")
 
 	_gui.show_message("Set", 1.5)
-	yield(get_tree().create_timer(3), "timeout")
+	yield(get_tree().create_timer(2), "timeout")
 
 	_gui.show_message("GO!", 1)
 
@@ -57,7 +58,8 @@ func play_end_game():
 	_win_music.play()
 
 	var percent_complete = score_keeper.get_percent_finished()
-	var percent_complete_money = percent_complete * 7500
+	var percent_complete_money = percent_complete * Globals.total_money_available / Globals.number_levels
+	Globals.money_earned += percent_complete_money
 
 	var time_taken = time_for_level - _level_timer.time_left
 	var time_taken_money = _level_timer.time_left * 500

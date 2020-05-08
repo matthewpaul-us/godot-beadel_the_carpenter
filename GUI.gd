@@ -6,6 +6,10 @@ onready var _receipt := $Receipt
 onready var _time_left_label := $TimeLeftLabel
 onready var _percent_complete_label := $PercentCompleteLabel
 onready var _message := $MainMessage
+onready var _anim := $AnimationPlayer
+
+func _ready():
+	_anim.play("timer")
 
 func set_time_left(seconds_left : float):
 	var minutes = int(seconds_left / 60)

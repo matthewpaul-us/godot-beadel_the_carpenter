@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/images/credits.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/wood_smooth.png" type="Texture" id=2]
+[ext_resource path="res://Credits.gd" type="Script" id=3]
+[ext_resource path="res://eaten_shader.tres" type="Material" id=4]
+[ext_resource path="res://Beadel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://EatenViewport.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="Credits" type="Node"]
+script = ExtResource( 3 )
+
+[node name="WoodUnder" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = ExtResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Beadel" parent="." instance=ExtResource( 6 )]
+position = Vector2( 885.26, 400.058 )
+
+[node name="BackButton" type="TextureRect" parent="."]
+margin_left = 392.698
+margin_top = 379.165
+margin_right = 427.698
+margin_bottom = 412.165
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayEaterButton" type="Area2D" parent="BackButton"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackButton/PlayEaterButton"]
+position = Vector2( 18.3953, 16.6434 )
+rotation = -0.172778
+shape = SubResource( 2 )
+
+[node name="EatenViewport" parent="." instance=ExtResource( 7 )]
+[connection signal="eating_finished" from="Beadel" to="." method="_on_Beadel_eating_finished"]
+[connection signal="eating_started" from="Beadel" to="." method="_on_Beadel_eating_started"]
+[connection signal="body_entered" from="BackButton/PlayEaterButton" to="." method="_on_Area2D_body_entered"]

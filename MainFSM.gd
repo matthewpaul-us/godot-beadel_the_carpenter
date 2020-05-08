@@ -25,7 +25,7 @@ func process_transition(delta):
 
 func enter_state(new_state, old_state):
 	if new_state == states.intro:
-		time_to_wait = 5
+		time_to_wait = 7
 		parent.play_intro()
 
 	if new_state == states.carve:

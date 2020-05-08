@@ -41,7 +41,7 @@ shader_param/blend_offset = 0.38
 shader_param/eaten_mask = SubResource( 2 )
 
 [node name="Level" instance=ExtResource( 1 )]
-time_for_level = 60
+time_for_level = 45
 next_level = "res://levels/Level_03_Beadel.tscn"
 
 [node name="Symbol" parent="." index="2"]

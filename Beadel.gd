@@ -7,6 +7,10 @@ export(float) var eat_speed := 75.0
 export(float) var move_speed := 200.0
 export(float) var turn_speed := 3.0
 
+export(PackedScene) var chunker
+
+onready var _bits_left := $WoodBitsLeft
+onready var _bits_right := $WoodBitsRight
 onready var _anim := $AnimationPlayer
 onready var _eat_sound := $EatSound
 onready var _walk_sound := $WalkSound
@@ -65,6 +69,22 @@ func start_play():
 
 func stop_play():
 	_fsm.set_state('stopped')
+
+func chew():
+	var left_chunker = chunker.instance()
+	left_chunker.position = _bits_left.global_position
+	left_chunker.rotation = _bits_left.global_rotation
+
+	var right_chunker = chunker.instance()
+	right_chunker.position = _bits_right.global_position
+	right_chunker.rotation = _bits_right.global_rotation
+
+	get_tree().root.add_child(left_chunker)
+	get_tree().root.add_child(right_chunker)
+
+	left_chunker.restart()
+	right_chunker.restart()
+
 
 func _forward():
 	return Vector2(0, -1).rotated(rotation).normalized()

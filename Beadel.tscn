@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/images/Beetle.png" type="Texture" id=1]
 [ext_resource path="res://Beadel.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://beetle/BeetleFSM.gd" type="Script" id=9]
 [ext_resource path="res://assets/audio/beetle_chewing.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/audio/beetle_walking.wav" type="AudioStream" id=11]
+[ext_resource path="res://WoodBits.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.9828
@@ -248,6 +249,23 @@ tracks/18/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.1757, 1.46615 ), Vector2( 1.11713, 1.31077 ), Vector2( 1, 1 ), Vector2( 1.1757, 1.46615 ), Vector2( 1.11713, 1.31077 ) ]
 }
+tracks/19/type = "method"
+tracks/19/path = NodePath(".")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "chew"
+}, {
+"args": [  ],
+"method": "chew"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.4
@@ -410,7 +428,17 @@ tracks/12/keys = {
 }
 
 [node name="Beadel" type="KinematicBody2D"]
+z_index = 1
 script = ExtResource( 2 )
+chunker = ExtResource( 12 )
+
+[node name="WoodBitsRight" type="Node2D" parent="."]
+position = Vector2( 8.80252, -40.0515 )
+rotation = 0.413026
+
+[node name="WoodBitsLeft" type="Node2D" parent="."]
+position = Vector2( -11.4433, -38.7312 )
+rotation = 2.92973
 
 [node name="BeetleHead" type="Sprite" parent="."]
 visible = false
@@ -427,55 +455,59 @@ position = Vector2( 0, 2.831 )
 shape = SubResource( 1 )
 
 [node name="Body" type="Sprite" parent="."]
-position = Vector2( -0.0128225, 0 )
+position = Vector2( 0.871312, 0 )
 texture = ExtResource( 6 )
 
 [node name="MouthRight" type="Sprite" parent="Body"]
-position = Vector2( 5.5838, -38.2342 )
+position = Vector2( 6.29137, -38.6152 )
+rotation = -0.50904
+scale = Vector2( 1.19608, 1.28621 )
 texture = ExtResource( 7 )
 offset = Vector2( 2.00059, -4.20358 )
 
 [node name="MouthLeft" type="Sprite" parent="Body"]
-position = Vector2( -5.13563, -38.5663 )
+position = Vector2( -5.73433, -38.403 )
+rotation = 0.554297
+scale = Vector2( 1.11516, 1.30553 )
 texture = ExtResource( 7 )
 offset = Vector2( -2.15035, -4.20358 )
 flip_h = true
 
 [node name="LegFrontRight" type="Sprite" parent="Body"]
-position = Vector2( 18.1451, -16.505 )
-rotation = 0.367071
+position = Vector2( 16.273, -18.2364 )
+rotation = -0.254917
 texture = ExtResource( 8 )
 offset = Vector2( 4.67909, -8.16879 )
 
 [node name="LegFrontLeft" type="Sprite" parent="Body"]
-position = Vector2( -18.6339, -16.2475 )
-rotation = -0.592313
+position = Vector2( -19.7517, -13.1911 )
+rotation = -1.42382
 texture = ExtResource( 8 )
 offset = Vector2( -4.86143, -8.73837 )
 flip_h = true
 
 [node name="LegMiddleRight" type="Sprite" parent="Body"]
-position = Vector2( 24.2212, 3.09863 )
-rotation = -0.218946
+position = Vector2( 25.4328, 6.96606 )
+rotation = 0.261456
 texture = ExtResource( 5 )
 offset = Vector2( 9.80534, 6.78278 )
 
 [node name="LegMiddleLeft" type="Sprite" parent="Body"]
-position = Vector2( -26.0051, 2.41996 )
-rotation = 0.319984
+position = Vector2( -25.0183, -0.270989 )
+rotation = 0.858513
 texture = ExtResource( 5 )
 offset = Vector2( -9.2757, 6.2132 )
 flip_h = true
 
 [node name="LegBackRight" type="Sprite" parent="Body"]
-position = Vector2( 25.5149, 23.6718 )
-rotation = -0.473152
+position = Vector2( 26.2594, 18.6436 )
+rotation = -1.22618
 texture = ExtResource( 4 )
 offset = Vector2( 4.96387, 14.757 )
 
 [node name="LegBackLeft" type="Sprite" parent="Body"]
-position = Vector2( -27.3075, 19.8601 )
-rotation = 0.463578
+position = Vector2( -26.7836, 24.0882 )
+rotation = -0.122055
 texture = ExtResource( 4 )
 offset = Vector2( -4.45114, 14.123 )
 flip_h = true

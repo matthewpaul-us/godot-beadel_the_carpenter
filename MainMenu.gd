@@ -30,4 +30,4 @@ func _on_Beadel_eating_finished():
 
 func _on_CreditsEaterButton_body_entered(body):
 	if _can_advance:
-		get_tree().change_scene("res://levels/Level_01_Plug.tscn")
+		get_tree().change_scene("res://Credits.tscn")
